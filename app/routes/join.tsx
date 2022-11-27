@@ -1,14 +1,11 @@
-import type {
-  ActionFunction,
-  LoaderArgs,
-  MetaFunction,
-} from "@remix-run/node";
+import type { ActionFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
-import { createUserSession, getUserId } from "~/session.server";
-import { createUser, getProfileByEmail } from "~/models/user.server";
+import { createUserSession, getUserId } from "~/server/session.server";
+import { createUser } from "~/server/models/user.server";
 import { validateEmail } from "~/utils";
 import * as React from "react";
+import invariant from "tiny-invariant";
 
 export const meta: MetaFunction = () => {
   return {
@@ -27,7 +24,7 @@ export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request);
   if (userId) return redirect("/");
   return json({});
-};
+}
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -61,16 +58,16 @@ export const action: ActionFunction = async ({ request }) => {
 
   // A user could potentially already exist within our system
   // and we should communicate that well
-  const existingUser = await getProfileByEmail(email);
-  if (existingUser) {
-    return json<ActionData>(
-      { errors: { email: "A user already exists with this email." } },
-      { status: 400 }
-    );
-  }
+  // const existingUser = await getProfileByEmail(email);
+  // if (existingUser) {
+  //   return json<ActionData>(
+  //     { errors: { email: "A user already exists with this email." } },
+  //     { status: 400 }
+  //   );
+  // }
 
   const user = await createUser(email, password);
-
+  invariant(user, "User not found!!");
   return createUserSession({
     request,
     userId: user.id,

@@ -1,9 +1,9 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
-import type { Note } from "~/models/note.server";
-import { getNoteListItems } from "~/models/note.server";
-import { requireUserId } from "~/session.server";
+import type { Note } from "~/server/models/note.server";
+import { getNoteListItems } from "~/server/models/note.server";
+import { requireUserId } from "~/server/session.server";
 import { useUser } from "~/utils";
 
 type LoaderData = {

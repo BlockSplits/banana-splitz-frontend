@@ -1,107 +1,103 @@
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
-import { useOptionalUser } from "~/utils";
 
-import BananaBanner from "../assets/banana-splitz.png";
+import BananaSplitz from "../assets/banana-splitz.png";
+import Diogomf from "../assets/diogomf.png";
+import Split from "../assets/split.png";
+import Blocks from "../assets/blocks.png";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Banana Splitz",
+  };
+};
+
+export const links: LinksFunction = () => {
+  return [
+    { rel: "icon", type: "image/png", sizes: "16x16", href: BananaSplitz },
+  ];
+};
 
 export default function Index() {
-  const user = useOptionalUser();
   return (
     <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
-      <div className="relative sm:pb-16 sm:pt-8">
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="relative shadow-xl grayscale transition hover:grayscale-0 focus:grayscale-0 sm:overflow-hidden sm:rounded-2xl">
-            <div className="absolute inset-0">
-              <img
-                className="h-full w-full "
-                src={BananaBanner}
-                alt="BTS playing on stage with the group leaving in action poses"
-              />
-              <div className="absolute inset-0 bg-[color:rgba(202,202,24,0.6)] mix-blend-multiply" />
-            </div>
-            <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-32">
-              <div className="mx-auto mt-80 mb-20 max-w-sm sm:flex sm:max-w-none sm:justify-center">
-                {user ? (
-                  <Link
-                    to="/notes"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-violet-700 shadow-sm hover:bg-violet-50 sm:px-8"
-                  >
-                    View Notes for {user.email}
-                  </Link>
-                ) : (
-                  <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
-                    <Link
-                      to="/join"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-violet-700 shadow-sm hover:bg-violet-50 sm:px-8"
-                    >
-                      Sign up
-                    </Link>
-                    <Link
-                      to="/login"
-                      className="flex items-center justify-center rounded-md bg-violet-500 px-4 py-3 font-medium text-white hover:bg-violet-600  "
-                    >
-                      Log In
-                    </Link>
+      <div className="h-screen w-full">
+        <header>
+          <nav className="border-gray-200 bg-white px-4 py-2.5 pt-6 lg:px-6">
+            <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
+              <Link to={"/"}>
+                <img
+                  src={BananaSplitz}
+                  className="mr-3 h-[50px] w-[50px]"
+                  alt="Banana splitz Logo"
+                  width={50}
+                  height={50}
+                />
+              </Link>
+              <div className="flex items-center lg:order-2">
+                <Link to={"/"}>
+                  <div className="hover:bg-orange-150 font-regular mr-2 flex cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-2 py-1 text-sm text-gray-800 ring-2 ring-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-2 lg:py-1">
+                    <span className="mr-2">
+                      <img src={Diogomf} alt="diogomf" width={28} height={28} />
+                    </span>
+                    <span>diogomf.eth</span>
                   </div>
-                )}
+                </Link>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <section>
+          <div className="mx-auto max-w-screen-xl">
+            <h1
+              className="mt-60 mb-10 w-full px-40 text-center text-7xl font-bold text-gray-800"
+              style={{ lineHeight: "100px" }}
+            >
+              Easiest way to{" "}
+              <span className="inline">
+                <span className="absolute z-0">
+                  <img src={Split} alt="split" width={129} height={106} />
+                </span>
+                <span className="relative">split</span>
+              </span>{" "}
+              bills with web3 frens
+            </h1>
+            <div className="flex w-full justify-center">
+              <Link to="login">
+              <button className="rounded-2xl bg-yellow-400 px-10 py-1 text-gray-800 ring-2 ring-gray-500 hover:bg-yellow-300">
+                Login
+              </button>
+              </Link>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="mx-auto max-w-screen-xl">
+            <div className="mt-24 flex">
+              <div className="flex flex-1 justify-center">
+                <div>
+                  <img src={Blocks} alt="split" width={56} height={52} />
+                  <h2 className="font-bold">Create Group</h2>
+                  <p>Organize with a group. Add your frens.</p>
+                </div>
+              </div>
+              <div className="flex flex-1 justify-center">
+                <div>
+                  <img src={Blocks} alt="split" width={56} height={52} />
+                  <h2 className="font-bold">Add expense</h2>
+                  <p>You can create a group. Add friends. Add expenses.</p>
+                </div>
+              </div>
+              <div className="flex flex-1 justify-center">
+                <div>
+                  <img src={Blocks} alt="split" width={56} height={52} />
+                  <h2 className="font-bold">Settle debts</h2>
+                  <p>You can settle debts with 1 transaction. USDC or DAI.</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8">
-          <div className="mt-6 flex flex-wrap justify-center gap-8">
-            {[
-              {
-                src: "https://user-images.githubusercontent.com/8431042/161311102-fad29f2b-ffd4-4a24-aa4e-92f3fda526a7.svg",
-                alt: "Netlify",
-                href: "https://netlify.com",
-              },
-              {
-                src: "https://user-images.githubusercontent.com/8431042/158711352-746c52cf-433e-4823-987a-c9d6f4349ce7.svg",
-                alt: "Supabase",
-                href: "https://supabase.com",
-              },
-              {
-                src: "https://user-images.githubusercontent.com/1500684/157764276-a516a239-e377-4a20-b44a-0ac7b65c8c14.svg",
-                alt: "Tailwind",
-                href: "https://tailwindcss.com",
-              },
-              {
-                src: "https://user-images.githubusercontent.com/1500684/157764454-48ac8c71-a2a9-4b5e-b19c-edef8b8953d6.svg",
-                alt: "Cypress",
-                href: "https://www.cypress.io",
-              },
-              {
-                src: "https://user-images.githubusercontent.com/1500684/157772662-92b0dd3a-453f-4d18-b8be-9fa6efde52cf.png",
-                alt: "Testing Library",
-                href: "https://testing-library.com",
-              },
-              {
-                src: "https://user-images.githubusercontent.com/1500684/157772934-ce0a943d-e9d0-40f8-97f3-f464c0811643.svg",
-                alt: "Prettier",
-                href: "https://prettier.io",
-              },
-              {
-                src: "https://user-images.githubusercontent.com/1500684/157772990-3968ff7c-b551-4c55-a25c-046a32709a8e.svg",
-                alt: "ESLint",
-                href: "https://eslint.org",
-              },
-              {
-                src: "https://user-images.githubusercontent.com/1500684/157773063-20a0ed64-b9f8-4e0b-9d1e-0b65a3d4a6db.svg",
-                alt: "TypeScript",
-                href: "https://typescriptlang.org",
-              },
-            ].map((img) => (
-              <a
-                key={img.href}
-                href={img.href}
-                className="flex h-16 w-32 justify-center p-1 grayscale transition hover:grayscale-0 focus:grayscale-0"
-              >
-                <img alt={img.alt} src={img.src} />
-              </a>
-            ))}
-          </div>
-        </div>
+        </section>
       </div>
     </main>
   );
