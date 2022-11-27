@@ -19,43 +19,12 @@ export async function loader({ request }: LoaderArgs) {
   return json({ groupListItems });
 }
 
-export default function NotesPage() {
-  
-
+export default function Dashboard() {
   return (
     <div className="flex h-full min-h-screen flex-col">
       <Header />
       <main className="flex h-full">
-        {/* <div className="h-full w-80 border-r bg-gray-50">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Group
-          </Link>
-
-          <hr />
-
-          {data.groupListItems.length === 0 ? (
-            <p className="p-4">No groups yet</p>
-          ) : (
-            <ol>
-              {data.groupListItems.map((group) => (
-                <li key={group.id}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
-                    }
-                    to={`${group.id}`}
-                  >
-                    📝 {group.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ol>
-          )}
-        </div> */}
-
-
-          <Outlet />
-        
+        <Outlet />
       </main>
     </div>
   );
@@ -79,7 +48,7 @@ function Header() {
             </Link>
             <div className="flex items-center lg:order-2">
               <Link to={"/dashboard"}>
-                <div className="hover:bg-orange-200 font-regular mr-2 flex h-[36px] cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-2 py-1 text-sm text-gray-800 ring-2 ring-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-2 lg:py-1">
+                <div className="font-regular mr-2 flex h-[36px] cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-2 py-1 text-sm text-gray-800 ring-2 ring-gray-800 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-2 lg:py-1">
                   <span className="mr-2">
                     <img src={Diogomf} alt="diogomf" width={28} height={28} />
                   </span>
@@ -89,7 +58,7 @@ function Header() {
               <Form action="/login/logout" method="post">
                 <button
                   type="submit"
-                  className="hover:bg-orange-200 font-regular ml-2 mr-2 flex h-[36px] cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-4 py-1 text-sm text-gray-800 ring-2 ring-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-4 lg:py-1"
+                  className="font-regular ml-2 mr-2 flex h-[36px] cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-4 py-1 text-sm text-gray-800 ring-2 ring-gray-800 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-4 lg:py-1"
                 >
                   Logout
                 </button>

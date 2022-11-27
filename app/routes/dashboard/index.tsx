@@ -19,7 +19,7 @@ export default function GroupIndexPage() {
   return (
     <>
       <NoDataDashboard items={groupListItems} />
-      {
+      {groupListItems.length > 0 && (
         <div className="flex w-full flex-col px-4">
           <div className="mt-10 flex">
             <Link to="#">
@@ -53,21 +53,24 @@ export default function GroupIndexPage() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col h-[200px] w-2/6 rounded-2xl bg-yellow-50 px-5 py-4 ring-1 ring-yellow-500">
+            <div className="flex h-[200px] w-2/6 flex-col rounded-2xl bg-yellow-50 px-5 py-4 ring-1 ring-yellow-500">
               <h3>Groups</h3>
               <div>
-                {groupListItems.map(group =>(
-                  <div className="flex w-full border-b border-grey-500" key={group.id}>
+                {groupListItems.map((group) => (
+                  <div
+                    className="border-grey-500 flex w-full border-b"
+                    key={group.id}
+                  >
                     <div>{group.id}</div>
                     <div>{group.name}</div>
                     <div>{group.description}</div>
-                  </div >
+                  </div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 }

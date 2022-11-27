@@ -35,6 +35,7 @@ export const action: ActionFunction = async ({ request }) => {
     description,
     userId,
   });
+  
   if (group) {
     return redirect(`/dashboard`);
   }
