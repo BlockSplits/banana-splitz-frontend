@@ -35,7 +35,7 @@ export default function Index() {
                 />
               </Link>
               <div className="flex items-center lg:order-2">
-                <Link to={"/"}>
+                <Link to={"/dashboard"}>
                   <div className="hover:bg-orange-150 font-regular mr-2 flex cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-2 py-1 text-sm text-gray-800 ring-2 ring-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-2 lg:py-1">
                     <span className="mr-2">
                       <img src={Diogomf} alt="diogomf" width={28} height={28} />

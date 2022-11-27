@@ -22,7 +22,7 @@ export async function getProfileById(id: string) {
     data: { user },
     error,
   } = await supabase.auth.admin.getUserById(id);
-
+  
   if (error) return null;
   if (user) return { id: user.id, email: user.email };
 }

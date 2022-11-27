@@ -3,7 +3,7 @@ import invariant from "tiny-invariant";
 
 // Abstract this away
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 invariant(
   supabaseUrl,
@@ -11,8 +11,8 @@ invariant(
 );
 
 invariant(
-  supabaseAnonKey,
+  supabaseServiceRoleKey,
   "SUPABASE_ANON_KEY must be set in your environment variables."
 );
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
