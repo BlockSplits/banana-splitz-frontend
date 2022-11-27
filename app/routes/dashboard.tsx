@@ -10,13 +10,13 @@ import BananaSplitz from "../assets/banana-splitz.png";
 import Diogomf from "../assets/diogomf.png";
 
 type LoaderData = {
-  noteListItems: Note[];
+  groupListItems: Note[];
 };
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await requireUserId(request);
   //  const noteListItems = await getNoteListItems({ userId });
-  return json({ noteListItems: [] });
+  return json({ groupListItems: [] });
 }
 
 export default function NotesPage() {
@@ -28,16 +28,16 @@ export default function NotesPage() {
       <main className="flex h-full bg-white">
         <div className="h-full w-80 border-r bg-gray-50">
           <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Note
+            + New Group
           </Link>
 
           <hr />
 
-          {data.noteListItems.length === 0 ? (
-            <p className="p-4">No notes yet</p>
+          {data.groupListItems.length === 0 ? (
+            <p className="p-4">No groups yet</p>
           ) : (
             <ol>
-              {data.noteListItems.map((note) => (
+              {data.groupListItems.map((note) => (
                 <li key={note.id}>
                   <NavLink
                     className={({ isActive }) =>
@@ -83,7 +83,7 @@ function Header() {
                   <span className="mr-2">
                     <img src={Diogomf} alt="diogomf" width={28} height={28} />
                   </span>
-                  <span>diogomf.eth</span>
+                  <span>{user.email}</span>
                 </div>
               </Link>
               <Form action="/login/logout" method="post">
