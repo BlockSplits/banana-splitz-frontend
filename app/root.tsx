@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderArgs,
-  MetaFunction,
-} from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -14,21 +10,25 @@ import {
 } from "@remix-run/react";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
+import BananaSplitz from "./assets/banana-splitz.png";
+import { getUser } from "./server/session.server";
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "Banana Splitz" };
 };
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
+  return [
+    { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "icon", type: "image/png", sizes: "16x16", href: BananaSplitz },
+  ];
 };
 
 export async function loader({ request }: LoaderArgs) {
   return json({
     user: await getUser(request),
   });
-};
+}
 
 export default function App() {
   return (
