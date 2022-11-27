@@ -95,8 +95,6 @@ export default function Join() {
   }, [actionData]);
 
   return (
-    // <div className="flex min-h-full flex-col justify-center">
-    //   <div className="mx-auto w-full max-w-md px-8">
     <div>
       <div className="prose my-2">
         <h3>Sign up to Banana Splitz</h3>

@@ -5,20 +5,22 @@ import BananaSplitz from "../assets/banana-splitz.png";
 import Diogomf from "../assets/diogomf.png";
 import Split from "../assets/split.png";
 import Blocks from "../assets/blocks.png";
+import { useOptionalUser } from "~/utils";
 
-export const meta: MetaFunction = () => {
-  return {
-    title: "Banana Splitz",
-  };
-};
+// export const meta: MetaFunction = () => {
+//   return {
+//     title: "Banana Splitz",
+//   };
+// };
 
-export const links: LinksFunction = () => {
-  return [
-    { rel: "icon", type: "image/png", sizes: "16x16", href: BananaSplitz },
-  ];
-};
+// export const links: LinksFunction = () => {
+//   return [
+//     { rel: "icon", type: "image/png", sizes: "16x16", href: BananaSplitz },
+//   ];
+// };
 
 export default function Index() {
+  const user = useOptionalUser();
   return (
     <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
       <div className="h-screen w-full">
@@ -35,14 +37,21 @@ export default function Index() {
                 />
               </Link>
               <div className="flex items-center lg:order-2">
-                <Link to={"/dashboard"}>
-                  <div className="hover:bg-orange-150 font-regular mr-2 flex cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-2 py-1 text-sm text-gray-800 ring-2 ring-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-2 lg:py-1">
-                    <span className="mr-2">
-                      <img src={Diogomf} alt="diogomf" width={28} height={28} />
-                    </span>
-                    <span>diogomf.eth</span>
-                  </div>
-                </Link>
+                {user && (
+                  <Link to={"/dashboard"}>
+                    <div className="hover:bg-orange-150 font-regular mr-2 flex cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-2 py-1 text-sm text-gray-800 ring-2 ring-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-300 lg:px-2 lg:py-1">
+                      <span className="mr-2">
+                        <img
+                          src={Diogomf}
+                          alt={user.email}
+                          width={28}
+                          height={28}
+                        />
+                      </span>
+                      <span>{user.email}</span>
+                    </div>
+                  </Link>
+                )}
               </div>
             </div>
           </nav>
@@ -64,9 +73,9 @@ export default function Index() {
             </h1>
             <div className="flex w-full justify-center">
               <Link to="login">
-              <button className="rounded-2xl bg-yellow-400 px-10 py-1 text-gray-800 ring-2 ring-gray-500 hover:bg-yellow-300">
-                Login
-              </button>
+                <button className="rounded-2xl bg-yellow-400 px-10 py-1 text-gray-800 ring-2 ring-gray-500 hover:bg-yellow-300">
+                  Login
+                </button>
               </Link>
             </div>
           </div>

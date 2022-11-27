@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { Database } from "lib/database.types";
 import invariant from "tiny-invariant";
 
 // Abstract this away
@@ -15,4 +16,4 @@ invariant(
   "SUPABASE_ANON_KEY must be set in your environment variables."
 );
 
-export const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+export const supabase = createClient<Database>(supabaseUrl, supabaseServiceRoleKey);
