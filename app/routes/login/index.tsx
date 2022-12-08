@@ -1,11 +1,14 @@
-import { type ActionFunction, json, redirect, type LoaderArgs } from "@remix-run/node";
+import {
+  type ActionFunction,
+  json,
+  redirect,
+  type LoaderArgs,
+} from "@remix-run/node";
 import { Link, Form, useActionData } from "@remix-run/react";
 import React from "react";
 import { verifyLogin } from "~/server/models/user.server";
 import { createUserSession, getUserId } from "~/server/session.server";
 import { validateEmail } from "~/utils";
-
-
 
 interface ActionData {
   errors: {
@@ -149,13 +152,11 @@ export default function Login() {
             </label>
           </div>
           <div className="flex text-center text-sm text-gray-500">
-            <p>Don't have an account? {" "}
-            <Link
-              className="text-blue-500 underline"
-              to={"sign-up"}
-            >
-              Sign up
-            </Link>
+            <p>
+              Don't have an account?{" "}
+              <Link className="text-blue-500 underline" to={"sign-up"}>
+                Sign up
+              </Link>
             </p>
           </div>
         </div>
