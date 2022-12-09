@@ -1,5 +1,6 @@
 import { type LoaderArgs, json } from "@remix-run/node";
 import { Link, NavLink, useLoaderData } from "@remix-run/react";
+import { CaretRight } from "phosphor-react";
 import { type Group, getGroupItems } from "~/server/models/groups.server";
 import { requireUserId } from "~/server/session.server";
 
@@ -18,10 +19,9 @@ export default function GroupIndexPage() {
 
   return (
     <>
-      <NoDataDashboard items={groupListItems} />
-      {groupListItems.length > 0 && (
-        <div className="flex w-full flex-col px-4">
-          <div className="mt-10 flex">
+      {groupListItems.length > 0 ? (
+        <div className="m-12 w-full space-y-4">
+          <div className="flex">
             <Link to="#">
               <button className="font-regular mr-2 flex h-[36px] cursor-pointer items-center rounded-lg rounded-2xl bg-orange-50 px-4 py-1 text-sm text-gray-800 ring-2 ring-yellow-400 hover:bg-orange-200 lg:px-4 lg:py-1">
                 Add expense
@@ -54,22 +54,25 @@ export default function GroupIndexPage() {
               </div>
             </div>
             <div className="flex h-[200px] w-2/6 flex-col rounded-2xl bg-yellow-50 px-5 py-4 ring-1 ring-yellow-500">
-              <h3>Groups</h3>
-              <div>
+              <h3 className="mt-0 mb-2 text-xl font-bold">Groups</h3>
+              <div className="divide-y divide-gray-400">
                 {groupListItems.map((group) => (
-                  <div
-                    className="border-grey-500 flex w-full border-b"
+                  <Link
+                    to={`/dashboard/${group.id}`}
+                    className="flex w-full items-center pb-2 pt-1"
                     key={group.id}
                   >
-                    <div>{group.id}</div>
                     <div>{group.name}</div>
                     <div>{group.description}</div>
-                  </div>
+                    <CaretRight className="ml-auto" />
+                  </Link>
                 ))}
               </div>
             </div>
           </div>
         </div>
+      ) : (
+        <NoDataDashboard items={groupListItems} />
       )}
     </>
   );
